@@ -1,28 +1,34 @@
 package Palindrome;
-public class UseCasePalindromeCheckerApp{
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
+
+public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         // Hardcoded string
-        String word = "racecar";
+        String word = "madam";
 
-        // Convert string to character array
-        char[] chars = word.toCharArray();
+        // Create Queue and Stack
+        Queue<Character> queue = new LinkedList<>();
+        Stack<Character> stack = new Stack<>();
 
-        // Two-pointer variables
-        int start = 0;
-        int end = chars.length - 1;
+        // Insert characters into both structures
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            queue.add(ch);   // Enqueue (FIFO)
+            stack.push(ch);  // Push (LIFO)
+        }
 
         boolean isPalindrome = true;
 
-        // Compare characters from both ends
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        // Compare dequeue vs pop
+        while (!queue.isEmpty()) {
+            if (queue.remove() != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
         // Print result
