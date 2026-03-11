@@ -1,42 +1,24 @@
 package Palindrome;
-
-import java.util.Scanner;
-
-
+import java.util.*;
 public class UseCasePalindromeCheckerApp {
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Input text: ");
+        String input= sc.next();
+        char[] ch= input.toCharArray();
+        String reversed= "";
 
-    // Recursive palindrome check
-    public static boolean isPalindrome(String str, int start, int end) {
+        for(int i=input.length()-1; i>=0; i-- ){
+            reversed += ch[i];
+        }
 
-        // Base condition: crossed pointers or single char
-        if (start >= end)
-            return true;
-
-        // If mismatch found
-        if (str.charAt(start) != str.charAt(end))
-            return false;
-
-        // Recursive call
-        return isPalindrome(str, start + 1, end - 1);
+        if(input.equals(reversed)){
+            System.out.println("Is it a Palindrome? : True");
+        }
+        else {
+            System.out.println("Is it a Palindrome? : False");
+        }
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
-        System.out.println("=== Recursive Palindrome Checker ===");
-        System.out.print("Enter a string: ");
-        String input = sc.nextLine();
-
-        // Normalize string
-        String processed = input.replaceAll("\\s+", "").toLowerCase();
-
-        boolean result = isPalindrome(processed, 0, processed.length() - 1);
-
-        if (result)
-            System.out.println("Result: The string IS a palindrome.");
-        else
-            System.out.println("Result: The string is NOT a palindrome.");
-
-        sc.close();
-    }
 }
